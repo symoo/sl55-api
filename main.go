@@ -2,33 +2,23 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/symoo/sf55-api/router"
 )
 
 func main() {
-	r := gin.Default()
+	r := gin.New()
+	
+	middlerwares := []gin.HandlerFunc{}
 
+	router.Load(r, middlerwares...,)
+	
 	r.GET("/", func (c *gin.Context) {
 		c.JSON(200, gin.H{
-			"message": "pong",
+			"message": "hi",
 		})
 	})
 	
 	r.Run()
 }
 
-func login(code string) string {
-	r := code2Session(code)
-	
-	return ""
-}
 
-func code2Session(code string) interface{} {
-	appid := ""
-	secret := ""
-	grantType := "authorization_code"
-	return 1
-}
-
-func findByOpenID(openID string) {
-	
-}
